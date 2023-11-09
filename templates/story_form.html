@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Story Form{% endblock %}
+
+{% block content %}
+
+    <form action="/story/{{story.id}}" method="POST">
+        {% for each in story.prompts %}
+            <label for="{{each}}">{{each}}</label>
+            <input name="{{each}}" id="{{each}}" type="text">
+            <br>
+        {% endfor %}
+        <button>Submit</button>
+    </form>
+
+{% endblock %}

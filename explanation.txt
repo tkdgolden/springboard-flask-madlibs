@@ -1,0 +1,34 @@
+app.py:
+    @app.route('/', methods=["GET", "POST"])
+    def index():
+        if request.method == 'GET':
+            return render_template("index.html", stories=story_list)
+        if request.method == 'POST':
+            return redirect(f'/story/{story_id}')
+
+    @app.route('/story/<story_id>', methods=["GET", "POST"])
+    def story(story_id):
+        if request.method == 'GET':
+            return render_template("story_form.html", story=this_story)
+        if request.method == 'POST':
+            return render_template("view_story.html", result=result)
+    
+index.html:
+    <form action="/" method="post">
+
+story_form.html:
+    <form action="/story/{{story.id}}" method="POST">
+
+view_story.html:
+    <a href="/">Back to Home</a>
+
+
+FLOW:
+GET /
+    renders form on homepage where a user submits story_id choice ->
+POST /
+    takes the story_id from form and ->
+GET story/story_id
+    renders form for the chosen story where a user submits their answers ->
+POST story/story_id
+    renders the finished story incorporating the user's answers

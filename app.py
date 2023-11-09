@@ -39,8 +39,3 @@ def story(story_id):
         result = this_story.generate(answers)
 
         return render_template("view_story.html", result=result)
-    
-@app.route('/test/<int:story_id>')
-def test(story_id):
-    print(story_id)
-    return render_template("index.html")
